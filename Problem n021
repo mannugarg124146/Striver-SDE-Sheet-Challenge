@@ -1,0 +1,61 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        // if(nums.size()==0)
+        // return 0;
+        // sort(nums.begin(),nums.end());
+        // set<int>st;
+        // for(int i=0;i<nums.size();i++)
+        // {
+        //     st.insert(nums[i]);
+        // }
+        // nums.clear();
+        // set<int>::iterator itr;
+        // for (itr = st.begin(); itr != st.end(); itr++)
+        // {
+        //    nums.push_back(*itr);
+        //  }
+        
+        // int ans = 1;
+        // int prev = nums[0];
+        // int cur = 1;
+        
+        // for(int i = 1;i < nums.size();i++){
+        //     if(nums[i] == prev+1){
+        //         cur++;
+        //     }
+        //     else if(nums[i] != prev+1){
+        //         cur = 1;
+        //     }
+        //     prev = nums[i];
+        //     ans = max(ans, cur);
+        // }
+        // return ans;
+         if(nums.size()==0)
+        return 0;
+        sort(nums.begin(),nums.end());
+        set<int>st;
+        for(int i=0;i<nums.size();i++)
+        {
+            st.insert(nums[i]);
+        }
+       int longcount=0;
+
+        for(int i=0;i<nums.size();i++)
+        {
+            if(!st.count(nums[i]-1))
+            {
+                int currnum=nums[i];
+                int currcount=1;
+                while(st.count(currnum+1))
+                {
+                    currnum++;
+                    currcount++;
+                   
+                }
+                 longcount=max(currcount,longcount);
+            }
+        }
+        return longcount;
+    }
+};
